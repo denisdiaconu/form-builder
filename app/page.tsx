@@ -5,7 +5,7 @@ export default function Home() {
     <div className='flex flex-col min-h-screen'>
       <header className="bg-white border-b border-gray-200 py-4">
         <div className='container mx-auto px-4 flex justify-between items-center'>
-          <h1>Form Builder</h1>
+          <h1 className='text-2xl font-bold'>Form Builder</h1>
           <div>Sign in</div>
         </div>
       </header>
