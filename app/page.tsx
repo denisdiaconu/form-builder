@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
 export default function Home() {
@@ -8,7 +9,16 @@ export default function Home() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Form Builder</h1>
           <div>
-            <Button>Sign In</Button>
+            <SignedOut>
+              <SignInButton>
+                <Button>Sign In</Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <Button asChild>
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
+            </SignedIn>
           </div>
         </div>
       </header>
@@ -21,9 +31,16 @@ export default function Home() {
             Build forms, collect responses, and analyze data - all in one
             platform.
           </p>
-          <Button asChild size="lg">
-            <Link href="/dashboard/forms/create">Create a Form</Link>
-          </Button>
+          <SignedIn>
+            <Button asChild size="lg">
+              <Link href="/dashboard/forms/create">Create a Form</Link>
+            </Button>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton>
+              <Button>Get Started</Button>
+            </SignInButton>
+          </SignedOut>
         </div>
       </div>
     </div>
