@@ -28,8 +28,28 @@ export default function Dashboard() {
           </Button>
         </div>
       </div>
-      <div className='bg-white rounded-lg shadow p-6 border'>
-      <h2 className="text-xl font-medium mb-4">Recent Forms</h2>
+      <div className="bg-white rounded-lg shadow p-6 border">
+        <h2 className="text-xl font-medium mb-4">Recent Forms</h2>
+        <div className="space-y-4">
+          <div className="flex items-center justify-between border-b pb-4">
+            <div>
+              <h3 className="font-medium">This is the title</h3>
+              <p className="text-sm text-gray-500">
+                responses . Created on 21 April 2025
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button>
+                <Link href={`/dashboard/forms/123`}>View</Link>
+              </Button>
+              <Button>
+                <Link href={`/dashboard/forms/123/responses`}>
+                  Responses
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
