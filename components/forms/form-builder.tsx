@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
+import { Button } from '../ui/button';
 
 export default function FormBuilder() {
   const [form, setForm] = useState({
@@ -37,6 +38,14 @@ export default function FormBuilder() {
             onChange={(e) => setForm({ ...form, description: e.target.value })}
             placeholder="Enter form description"
           />
+        </div>
+        <div className="space-y-6">
+          <div className='flex items-center justify-between'>
+            <h3 className="text-lg font-medium">Questions</h3>
+            <Button variant="outline" type="button">
+              Add Question
+            </Button>
+          </div>
         </div>
       </div>
     </form>
