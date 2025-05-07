@@ -40,18 +40,34 @@ export default function FormBuilder() {
           />
         </div>
         <div className="space-y-6">
-          <div className='flex items-center justify-between'>
+          <div className="flex items-center justify-between">
             <h3 className="text-lg font-medium">Questions</h3>
             <Button variant="outline" type="button">
               Add Question
             </Button>
           </div>
           {form.questions.map((question, index) => (
-            <div key={question.id} className='space-y-2 p-4 border rounded-md'>
-              <div className='flex items-center justify-between'>
-                <Label htmlFor={`Question-${index}`}>Question {index+1}</Label>
-                <Button className='text-red-500 hover:text-red-700' type='button' size='sm' variant='ghost'>remove</Button>
+            <div key={question.id} className="space-y-2 p-4 border rounded-md">
+              <div className="flex items-center justify-between">
+                <Label htmlFor={`Question-${index}`}>
+                  Question {index + 1}
+                </Label>
+                <Button
+                  className="text-red-500 hover:text-red-700"
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                >
+                  remove
+                </Button>
               </div>
+              <Textarea
+                className="mt-1"
+                id={`Question-${index}`}
+                value={question.text}
+                onChange={(e) => {}}
+                placeholder="Enter your question"
+              />
             </div>
           ))}
         </div>
