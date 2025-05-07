@@ -46,6 +46,14 @@ export default function FormBuilder() {
               Add Question
             </Button>
           </div>
+          {form.questions.map((question, index) => (
+            <div key={question.id} className='space-y-2 p-4 border rounded-md'>
+              <div className='flex items-center justify-between'>
+                <Label htmlFor={`Question-${index}`}>Question {index+1}</Label>
+                <Button className='text-red-500 hover:text-red-700' type='button' size='sm' variant='ghost'>remove</Button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </form>
