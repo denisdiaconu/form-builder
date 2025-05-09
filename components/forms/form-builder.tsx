@@ -4,6 +4,7 @@ import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function FormBuilder() {
   const [form, setForm] = useState({
@@ -20,7 +21,7 @@ export default function FormBuilder() {
   const addQuestion = () => {
     setForm((prev) => ({
       ...prev,
-      questions: [...prev.questions, { id: '3', text: '' }],
+      questions: [...prev.questions, { id: uuidv4(), text: '' }],
     }));
   };
 
