@@ -25,6 +25,17 @@ export default function FormBuilder() {
     }));
   };
 
+  const removeQuestion = (index: number) => {
+    if(form.questions.length > 1) {
+      setForm(prev => ({
+        ...prev,
+        questions: prev.questions.filter((_, i) => i !== index),
+      }))
+    } else {
+      // do toast notificaton
+    }
+  }
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
@@ -68,6 +79,7 @@ export default function FormBuilder() {
                 type="button"
                 size="sm"
                 variant="ghost"
+                onClick={() => removeQuestion(index)}
               >
                 remove
               </Button>
