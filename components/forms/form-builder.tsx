@@ -26,15 +26,21 @@ export default function FormBuilder() {
   };
 
   const removeQuestion = (index: number) => {
-    if(form.questions.length > 1) {
-      setForm(prev => ({
+    if (form.questions.length > 1) {
+      setForm((prev) => ({
         ...prev,
         questions: prev.questions.filter((_, i) => i !== index),
-      }))
+      }));
     } else {
       // do toast notificaton
     }
-  }
+  };
+
+  const handleQuestionChange = (index: number, value: string) => {
+    const updatedQuestions = [...form.questions];
+    updatedQuestions[index].text = value;
+    setForm({ ...form, questions: updatedQuestions });
+  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -88,7 +94,7 @@ export default function FormBuilder() {
               className="mt-1"
               id={`Question-${index}`}
               value={question.text}
-              onChange={(e) => {}}
+              onChange={(e) => handleQuestionChange(index, e.target.value)}
               placeholder="Enter your question"
             />
           </div>
