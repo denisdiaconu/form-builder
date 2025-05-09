@@ -16,10 +16,17 @@ export default function FormBuilder() {
       },
     ],
   });
-  
+
+  const addQuestion = () => {
+    setForm((prev) => ({
+      ...prev,
+      questions: [...prev.questions, { id: '3', text: '' }],
+    }));
+  };
+
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="space-y-4">
@@ -47,7 +54,7 @@ export default function FormBuilder() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-medium">Questions</h3>
-          <Button variant="outline" type="button">
+          <Button variant="outline" type="button" onClick={addQuestion}>
             Add Question
           </Button>
         </div>
@@ -74,9 +81,11 @@ export default function FormBuilder() {
           </div>
         ))}
       </div>
-      <div className='flex justify-end gap-2'>
-        <Button type='button' variant='outline' onClick={() => {}}>Cancel</Button>
-        <Button type='submit'>Save</Button>
+      <div className="flex justify-end gap-2">
+        <Button type="button" variant="outline" onClick={() => {}}>
+          Cancel
+        </Button>
+        <Button type="submit">Save</Button>
       </div>
     </form>
   );
