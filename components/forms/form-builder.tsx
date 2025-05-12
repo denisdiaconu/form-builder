@@ -46,7 +46,7 @@ export default function FormBuilder() {
     setForm({ ...form, questions: updatedQuestions });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!form.title.trim()) {
@@ -62,6 +62,9 @@ export default function FormBuilder() {
 
     try {
       setIsSubmitting(true);
+
+      // Simulate a delay for form submission
+      await new Promise((resolve) => setTimeout(resolve, 2000));
     } catch {
     } finally {
       setIsSubmitting(false);
