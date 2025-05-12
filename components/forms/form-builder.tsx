@@ -45,6 +45,17 @@ export default function FormBuilder() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    if(!form.title.trim()) {
+      toast.error('Title is required');
+      return;
+    }
+
+    const emptyQuestions = form.questions.some((q) => !q.text.trim());
+    if (emptyQuestions) {
+      toast.error('All questions must be filled out');
+      return;
+    }
   };
   return (
     <form onSubmit={handleSubmit} className="space-y-8">

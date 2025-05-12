@@ -17,7 +17,7 @@ export default async function DashboardLayout({
       <Header />
       <main className="flex-1 container mx-auto p-4">
         {children}
-        <Toaster />
+        <Toaster richColors />
       </main>
     </div>
   );
