@@ -6,8 +6,11 @@ import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 export default function FormBuilder() {
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -46,7 +49,7 @@ export default function FormBuilder() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if(!form.title.trim()) {
+    if (!form.title.trim()) {
       toast.error('Title is required');
       return;
     }
@@ -55,6 +58,13 @@ export default function FormBuilder() {
     if (emptyQuestions) {
       toast.error('All questions must be filled out');
       return;
+    }
+
+    try {
+      setIsSubmitting(true);
+    } catch {
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
@@ -113,10 +123,17 @@ export default function FormBuilder() {
         ))}
       </div>
       <div className="flex justify-end gap-2">
-        <Button type="button" variant="outline" onClick={() => {}}>
+        <Button
+          type="button"
+          disabled={isSubmitting}
+          variant="outline"
+          onClick={() => router.back()}
+        >
           Cancel
         </Button>
-        <Button type="submit">Save</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Saving...' : 'Create Form'}
+        </Button>
       </div>
     </form>
   );
