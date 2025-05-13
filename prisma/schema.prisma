@@ -41,8 +41,21 @@ model Question {
   text      String
   formId    String
   form      Form     @relation(fields: [formId], references: [id])
-  answers  Answer[]
+  answers   Answer[]
   order     Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model FormResponse {
+  id              String   @id @default(cuid())
+  formId          String
+  form            Form     @relation(fields: [formId], references: [id])
+  asnwers         Answer[]
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  respondentEmail String?
+  respondentName  String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
