@@ -1,7 +1,10 @@
 import { Button } from '@/components/ui/button';
+import prisma from '@/lib/db';
 import Link from 'next/link';
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const users = await prisma.user.findMany()
+  console.log(users)
   return (
     <div className="space-y-6">
       <div>
