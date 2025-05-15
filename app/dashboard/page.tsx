@@ -1,10 +1,9 @@
 import { Button } from '@/components/ui/button';
-import prisma from '@/lib/db';
+import { syncUserWithDatabase } from '@/lib/clerk-sync';
 import Link from 'next/link';
 
 export default async function Dashboard() {
-  const users = await prisma.user.findMany()
-  console.log(users)
+  await syncUserWithDatabase();
   return (
     <div className="space-y-6">
       <div>
