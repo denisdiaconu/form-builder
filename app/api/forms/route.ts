@@ -9,5 +9,5 @@ export async function POST(req: Request) {
     }
 
     const { title, description, questions } = await req.json();
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ title, description, questions });
 }

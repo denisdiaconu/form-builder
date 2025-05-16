@@ -62,9 +62,13 @@ export default function FormBuilder() {
 
     try {
       setIsSubmitting(true);
-
-      // Simulate a delay for form submission
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const response = await fetch('/api/forms', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
     } catch {
     } finally {
       setIsSubmitting(false);
