@@ -7,4 +7,7 @@ export async function POST(req: Request) {
     if (!userId) {
         return new NextResponse("Unauthorized", { status: 401 });
     }
+
+    const { title, description, questions } = await req.json();
+    return NextResponse.json({ success: true });
 }
