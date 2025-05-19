@@ -69,7 +69,21 @@ export default function FormBuilder() {
         },
         body: JSON.stringify(form),
       });
-    } catch {
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(error);
+      }
+      const data = await response.json();
+      toast.success('Form created successfully!', {
+        description: 'Your form has been saved successfully.',
+      });
+      router.push(`/dashboard/forms/${data.id}`);
+      router.refresh();
+    } catch (error) {
+      console.error('Error saving form:', error);
+      toast.error('Error', {
+        description: 'Something went wrong while saving your form.',
+      });
     } finally {
       setIsSubmitting(false);
     }
