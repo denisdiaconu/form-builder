@@ -1,3 +1,4 @@
+import prisma from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 
@@ -18,4 +19,23 @@ export async function POST(req: Request) {
       status: 400,
     });
   }
+
+  const form = await prisma.form.create({
+    data: {
+      title,
+      description,
+      userId,
+      questions: {
+        create: questions.map((q: { text: string }, index: number) => ({
+          text: q.text,
+          order: index,
+        })),
+      },
+    },
+    include: {
+      questions: true,
+    },
+  });
+
+  return NextResponse.json(form)
 }
