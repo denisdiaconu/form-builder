@@ -1,5 +1,6 @@
 import prisma from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 
 export default async function FormDetailsPage({
   params,
@@ -28,13 +29,20 @@ export default async function FormDetailsPage({
       }
     }
   });
-  console.log('form', form);
+
+  if (!form) {
+    redirect(`/dashboard/forms`);
+  }
+
+  if (form.userId !== userId) {
+    redirect(`/dashboard/forms`);
+  }
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1></h1>
+          <h1>{form?.title}</h1>
         </div>
         <div></div>
       </div>
