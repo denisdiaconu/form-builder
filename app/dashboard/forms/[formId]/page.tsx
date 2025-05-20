@@ -47,7 +47,7 @@ export default async function FormDetailsPage({
     redirect(`/dashboard/forms`);
   }
 
-  const formUrl = `${process.env.NEXT_PUBLIC_APP_URL || ""}/forms/${formId}`;
+  const formUrl = `${process.env.NEXT_PUBLIC_APP_URL || ''}/forms/${formId}`;
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
@@ -73,12 +73,28 @@ export default async function FormDetailsPage({
         <Card>
           <CardHeader>
             <CardTitle>Share Your Form</CardTitle>
-            <CardDescription>Share this link with others to collect responses</CardDescription>
+            <CardDescription>
+              Share this link with others to collect responses
+            </CardDescription>
           </CardHeader>
           <CardContent>
-          <p className="p-2 border rounded-md bg-gray-50">{formUrl}</p>
-        </CardContent>
+            <p className="p-2 border rounded-md bg-gray-50">{formUrl}</p>
+          </CardContent>
         </Card>
+        <div className="space-y-4">
+          <h2 className="text-xl font-bold">Questions</h2>
+          <div className="space-y-2">
+            {form.questions.map((question, index) => (
+              <Card key={question.id}>
+                <CardContent className="p-4">
+                  <p className="font-medium">
+                    {index + 1}. {question.text}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
