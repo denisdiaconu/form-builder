@@ -1,4 +1,11 @@
 import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import prisma from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
 import Link from 'next/link';
@@ -40,6 +47,8 @@ export default async function FormDetailsPage({
     redirect(`/dashboard/forms`);
   }
 
+  const formUrl = `${process.env.NEXT_PUBLIC_APP_URL || ""}/forms/${formId}`;
+
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
@@ -59,6 +68,17 @@ export default async function FormDetailsPage({
             </Link>
           </Button>
         </div>
+      </div>
+      <div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Share Your Form</CardTitle>
+            <CardDescription>Share this link with others to collect responses</CardDescription>
+          </CardHeader>
+          <CardContent>
+          <p className="p-2 border rounded-md bg-gray-50">{formUrl}</p>
+        </CardContent>
+        </Card>
       </div>
     </div>
   );
