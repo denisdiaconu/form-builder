@@ -1,5 +1,7 @@
+import { Button } from '@/components/ui/button';
 import prisma from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 export default async function FormDetailsPage({
@@ -20,14 +22,14 @@ export default async function FormDetailsPage({
       questions: {
         orderBy: {
           order: 'asc',
-        }
+        },
       },
       _count: {
         select: {
           responses: true,
-        }
-      }
-    }
+        },
+      },
+    },
   });
 
   if (!form) {
@@ -42,9 +44,21 @@ export default async function FormDetailsPage({
     <div className="max-w-3xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1>{form?.title}</h1>
+          <h1 className="text-3xl font-bold">{form?.title}</h1>
+          {form.description && (
+            <p className="text-gray-500 mt-1">{form.description}</p>
+          )}
         </div>
-        <div></div>
+        <div className="flex gap-2">
+          <Button asChild variant="outline">
+            <Link href={`/dashboard/forms/${formId}/edit`}>Edit</Link>
+          </Button>
+          <Button asChild>
+            <Link href={`/dashboard/forms/${formId}/responses`}>
+              View Responses ({form._count.responses})
+            </Link>
+          </Button>
+        </div>
       </div>
     </div>
   );
