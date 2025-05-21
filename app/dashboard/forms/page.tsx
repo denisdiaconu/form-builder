@@ -9,7 +9,7 @@ export default async function FormPage() {
 
   const forms = await prisma.form.findMany({
     where: {
-      id: userId,
+      userId,
     },
     include: {
       _count: {
@@ -29,7 +29,7 @@ export default async function FormPage() {
         <h1 className="text-3xl font-bold">My Forms</h1>
         <p className="text-gray-500 mt-1">Create and manage your forms</p>
       </div>
-      <FormList forms={forms}/>
+      <FormList forms={forms} />
     </div>
   );
 }
