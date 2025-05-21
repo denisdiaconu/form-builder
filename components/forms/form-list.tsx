@@ -20,7 +20,7 @@ type FormListProps = {
 export default function FormList({ forms }: FormListProps) {
   const [searchValue, setSearchValue] = useState<string>('');
   return (
-    <div>
+    <div className='space-y-6'>
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <Input
           placeholder="Search forms..."

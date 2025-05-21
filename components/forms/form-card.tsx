@@ -1,3 +1,14 @@
+import Link from 'next/link';
+import { Button } from '../ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../ui/card';
+
 type FormCardProps = {
   id: string;
   title: string;
@@ -13,5 +24,32 @@ export default function FormCard({
   responsesCount,
   createdAt,
 }: FormCardProps) {
-  return <div>FormCard</div>;
+  const formattedDate = new Date(createdAt).toLocaleDateString();
+  return (
+    <Card className="h-full flex flex-col">
+      <CardHeader>
+        <CardTitle className="truncate">{title}</CardTitle>
+        {description && (
+          <CardDescription className="line-clamp-2">
+            {description}
+          </CardDescription>
+        )}
+      </CardHeader>
+      <CardContent className="flex-1">
+        <p className="text-sm text-gray-500">{responsesCount} response</p>
+        <p className="text-sm text-gray-500">Created: {formattedDate}</p>
+      </CardContent>
+      <CardFooter className="flex justify-between gap-2">
+        <Button asChild variant="outline" className="flex-1">
+          <Link href={`/dashboard/forms/${id}`}>View</Link>
+        </Button>
+        <Button asChild className="flex-1">
+          <Link href={`/dashboard/forms/${id}/responses`}>Responses</Link>
+        </Button>
+        <Button className="flex-1" variant="destructive">
+          Delete
+        </Button>
+      </CardFooter>
+    </Card>
+  );
 }
