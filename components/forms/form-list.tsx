@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import FormCard from './form-card';
 
 type Form = {
   id: string;
@@ -39,8 +40,17 @@ export default function FormList({ forms }: FormListProps) {
           </p>
         </div>
       ) : (
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-          <h1>FormCard</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {forms.map((form) => (
+            <FormCard
+              key={form.id}
+              id={form.id}
+              title={form.title}
+              description={form.description}
+              responsesCount={form._count.responses}
+              createdAt={form.createdAt}
+            />
+          ))}
         </div>
       )}
     </div>
