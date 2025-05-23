@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import prisma from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 export default async function FormResponsesPage({
@@ -43,7 +44,9 @@ export default async function FormResponsesPage({
           <h1 className="text-3xl font-bold">Form Responses</h1>
           <p className="text-gray-500 mt-1">{form.title} - {form.responses.length} responses</p>
         </div>
-        <Button></Button>
+        <Button asChild variant={"outline"}>
+            <Link href={`/dashboard/forms/${form.id}`}>Back to Form</Link>
+        </Button>
       </div>
     </div>
   );
