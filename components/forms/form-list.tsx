@@ -4,6 +4,7 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import FormCard from './form-card';
+import { to } from '../../.next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_61dcf9ba._';
 
 type Form = {
   id: string;
@@ -19,8 +20,12 @@ type FormListProps = {
 };
 export default function FormList({ forms }: FormListProps) {
   const [searchValue, setSearchValue] = useState<string>('');
+
+  const filteredForms = forms.filter((form) =>
+    form.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
   return (
-    <div className='space-y-6'>
+    <div className="space-y-6">
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <Input
           placeholder="Search forms..."
@@ -33,7 +38,7 @@ export default function FormList({ forms }: FormListProps) {
         </Button>
       </div>
 
-      {forms.length === 0 ? (
+      {filteredForms.length === 0 ? (
         <div className="text-center py-8">
           <p className="text-gray-500">
             No forms found. Create your first form!
@@ -41,7 +46,7 @@ export default function FormList({ forms }: FormListProps) {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {forms.map((form) => (
+          {filteredForms.map((form) => (
             <FormCard
               key={form.id}
               id={form.id}
