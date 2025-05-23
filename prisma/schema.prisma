@@ -51,7 +51,7 @@ model FormResponse {
   id              String   @id @default(cuid())
   formId          String
   form            Form     @relation(fields: [formId], references: [id])
-  asnwers         Answer[]
+  answers         Answer[]
   userId          String
   user            User     @relation(fields: [userId], references: [id])
   respondentEmail String?

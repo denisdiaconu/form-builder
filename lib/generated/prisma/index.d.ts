@@ -1344,11 +1344,11 @@ export namespace Prisma {
    */
 
   export type FormResponseCountOutputType = {
-    asnwers: number
+    answers: number
   }
 
   export type FormResponseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    asnwers?: boolean | FormResponseCountOutputTypeCountAsnwersArgs
+    answers?: boolean | FormResponseCountOutputTypeCountAnswersArgs
   }
 
   // Custom InputTypes
@@ -1365,7 +1365,7 @@ export namespace Prisma {
   /**
    * FormResponseCountOutputType without action
    */
-  export type FormResponseCountOutputTypeCountAsnwersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FormResponseCountOutputTypeCountAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AnswerWhereInput
   }
 
@@ -4911,7 +4911,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     form?: boolean | FormDefaultArgs<ExtArgs>
-    asnwers?: boolean | FormResponse$asnwersArgs<ExtArgs>
+    answers?: boolean | FormResponse$answersArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | FormResponseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["formResponse"]>
@@ -4953,7 +4953,7 @@ export namespace Prisma {
   export type FormResponseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "formId" | "userId" | "respondentEmail" | "respondentName" | "createdAt" | "updatedAt", ExtArgs["result"]["formResponse"]>
   export type FormResponseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     form?: boolean | FormDefaultArgs<ExtArgs>
-    asnwers?: boolean | FormResponse$asnwersArgs<ExtArgs>
+    answers?: boolean | FormResponse$answersArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | FormResponseCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -4970,7 +4970,7 @@ export namespace Prisma {
     name: "FormResponse"
     objects: {
       form: Prisma.$FormPayload<ExtArgs>
-      asnwers: Prisma.$AnswerPayload<ExtArgs>[]
+      answers: Prisma.$AnswerPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5376,7 +5376,7 @@ export namespace Prisma {
   export interface Prisma__FormResponseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     form<T extends FormDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FormDefaultArgs<ExtArgs>>): Prisma__FormClient<$Result.GetResult<Prisma.$FormPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    asnwers<T extends FormResponse$asnwersArgs<ExtArgs> = {}>(args?: Subset<T, FormResponse$asnwersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    answers<T extends FormResponse$answersArgs<ExtArgs> = {}>(args?: Subset<T, FormResponse$answersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5808,9 +5808,9 @@ export namespace Prisma {
   }
 
   /**
-   * FormResponse.asnwers
+   * FormResponse.answers
    */
-  export type FormResponse$asnwersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FormResponse$answersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Answer
      */
@@ -7289,7 +7289,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FormResponse"> | Date | string
     updatedAt?: DateTimeFilter<"FormResponse"> | Date | string
     form?: XOR<FormScalarRelationFilter, FormWhereInput>
-    asnwers?: AnswerListRelationFilter
+    answers?: AnswerListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -7302,7 +7302,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     form?: FormOrderByWithRelationInput
-    asnwers?: AnswerOrderByRelationAggregateInput
+    answers?: AnswerOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
   }
 
@@ -7318,7 +7318,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FormResponse"> | Date | string
     updatedAt?: DateTimeFilter<"FormResponse"> | Date | string
     form?: XOR<FormScalarRelationFilter, FormWhereInput>
-    asnwers?: AnswerListRelationFilter
+    answers?: AnswerListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -7618,7 +7618,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     form: FormCreateNestedOneWithoutResponsesInput
-    asnwers?: AnswerCreateNestedManyWithoutFormResponseInput
+    answers?: AnswerCreateNestedManyWithoutFormResponseInput
     user: UserCreateNestedOneWithoutFormResponsesInput
   }
 
@@ -7630,7 +7630,7 @@ export namespace Prisma {
     respondentName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    asnwers?: AnswerUncheckedCreateNestedManyWithoutFormResponseInput
+    answers?: AnswerUncheckedCreateNestedManyWithoutFormResponseInput
   }
 
   export type FormResponseUpdateInput = {
@@ -7640,7 +7640,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     form?: FormUpdateOneRequiredWithoutResponsesNestedInput
-    asnwers?: AnswerUpdateManyWithoutFormResponseNestedInput
+    answers?: AnswerUpdateManyWithoutFormResponseNestedInput
     user?: UserUpdateOneRequiredWithoutFormResponsesNestedInput
   }
 
@@ -7652,7 +7652,7 @@ export namespace Prisma {
     respondentName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    asnwers?: AnswerUncheckedUpdateManyWithoutFormResponseNestedInput
+    answers?: AnswerUncheckedUpdateManyWithoutFormResponseNestedInput
   }
 
   export type FormResponseCreateManyInput = {
@@ -7689,7 +7689,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     question?: QuestionCreateNestedOneWithoutAnswersInput
-    formResponse?: FormResponseCreateNestedOneWithoutAsnwersInput
+    formResponse?: FormResponseCreateNestedOneWithoutAnswersInput
   }
 
   export type AnswerUncheckedCreateInput = {
@@ -7707,7 +7707,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     question?: QuestionUpdateOneWithoutAnswersNestedInput
-    formResponse?: FormResponseUpdateOneWithoutAsnwersNestedInput
+    formResponse?: FormResponseUpdateOneWithoutAnswersNestedInput
   }
 
   export type AnswerUncheckedUpdateInput = {
@@ -8400,9 +8400,9 @@ export namespace Prisma {
     connect?: QuestionWhereUniqueInput
   }
 
-  export type FormResponseCreateNestedOneWithoutAsnwersInput = {
-    create?: XOR<FormResponseCreateWithoutAsnwersInput, FormResponseUncheckedCreateWithoutAsnwersInput>
-    connectOrCreate?: FormResponseCreateOrConnectWithoutAsnwersInput
+  export type FormResponseCreateNestedOneWithoutAnswersInput = {
+    create?: XOR<FormResponseCreateWithoutAnswersInput, FormResponseUncheckedCreateWithoutAnswersInput>
+    connectOrCreate?: FormResponseCreateOrConnectWithoutAnswersInput
     connect?: FormResponseWhereUniqueInput
   }
 
@@ -8416,14 +8416,14 @@ export namespace Prisma {
     update?: XOR<XOR<QuestionUpdateToOneWithWhereWithoutAnswersInput, QuestionUpdateWithoutAnswersInput>, QuestionUncheckedUpdateWithoutAnswersInput>
   }
 
-  export type FormResponseUpdateOneWithoutAsnwersNestedInput = {
-    create?: XOR<FormResponseCreateWithoutAsnwersInput, FormResponseUncheckedCreateWithoutAsnwersInput>
-    connectOrCreate?: FormResponseCreateOrConnectWithoutAsnwersInput
-    upsert?: FormResponseUpsertWithoutAsnwersInput
+  export type FormResponseUpdateOneWithoutAnswersNestedInput = {
+    create?: XOR<FormResponseCreateWithoutAnswersInput, FormResponseUncheckedCreateWithoutAnswersInput>
+    connectOrCreate?: FormResponseCreateOrConnectWithoutAnswersInput
+    upsert?: FormResponseUpsertWithoutAnswersInput
     disconnect?: FormResponseWhereInput | boolean
     delete?: FormResponseWhereInput | boolean
     connect?: FormResponseWhereUniqueInput
-    update?: XOR<XOR<FormResponseUpdateToOneWithWhereWithoutAsnwersInput, FormResponseUpdateWithoutAsnwersInput>, FormResponseUncheckedUpdateWithoutAsnwersInput>
+    update?: XOR<XOR<FormResponseUpdateToOneWithWhereWithoutAnswersInput, FormResponseUpdateWithoutAnswersInput>, FormResponseUncheckedUpdateWithoutAnswersInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8598,7 +8598,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     form: FormCreateNestedOneWithoutResponsesInput
-    asnwers?: AnswerCreateNestedManyWithoutFormResponseInput
+    answers?: AnswerCreateNestedManyWithoutFormResponseInput
   }
 
   export type FormResponseUncheckedCreateWithoutUserInput = {
@@ -8608,7 +8608,7 @@ export namespace Prisma {
     respondentName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    asnwers?: AnswerUncheckedCreateNestedManyWithoutFormResponseInput
+    answers?: AnswerUncheckedCreateNestedManyWithoutFormResponseInput
   }
 
   export type FormResponseCreateOrConnectWithoutUserInput = {
@@ -8710,7 +8710,7 @@ export namespace Prisma {
     respondentName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    asnwers?: AnswerCreateNestedManyWithoutFormResponseInput
+    answers?: AnswerCreateNestedManyWithoutFormResponseInput
     user: UserCreateNestedOneWithoutFormResponsesInput
   }
 
@@ -8721,7 +8721,7 @@ export namespace Prisma {
     respondentName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    asnwers?: AnswerUncheckedCreateNestedManyWithoutFormResponseInput
+    answers?: AnswerUncheckedCreateNestedManyWithoutFormResponseInput
   }
 
   export type FormResponseCreateOrConnectWithoutFormInput = {
@@ -8859,7 +8859,7 @@ export namespace Prisma {
     text: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    formResponse?: FormResponseCreateNestedOneWithoutAsnwersInput
+    formResponse?: FormResponseCreateNestedOneWithoutAnswersInput
   }
 
   export type AnswerUncheckedCreateWithoutQuestionInput = {
@@ -9110,7 +9110,7 @@ export namespace Prisma {
     create: XOR<QuestionCreateWithoutAnswersInput, QuestionUncheckedCreateWithoutAnswersInput>
   }
 
-  export type FormResponseCreateWithoutAsnwersInput = {
+  export type FormResponseCreateWithoutAnswersInput = {
     id?: string
     respondentEmail?: string | null
     respondentName?: string | null
@@ -9120,7 +9120,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutFormResponsesInput
   }
 
-  export type FormResponseUncheckedCreateWithoutAsnwersInput = {
+  export type FormResponseUncheckedCreateWithoutAnswersInput = {
     id?: string
     formId: string
     userId: string
@@ -9130,9 +9130,9 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type FormResponseCreateOrConnectWithoutAsnwersInput = {
+  export type FormResponseCreateOrConnectWithoutAnswersInput = {
     where: FormResponseWhereUniqueInput
-    create: XOR<FormResponseCreateWithoutAsnwersInput, FormResponseUncheckedCreateWithoutAsnwersInput>
+    create: XOR<FormResponseCreateWithoutAnswersInput, FormResponseUncheckedCreateWithoutAnswersInput>
   }
 
   export type QuestionUpsertWithoutAnswersInput = {
@@ -9164,18 +9164,18 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FormResponseUpsertWithoutAsnwersInput = {
-    update: XOR<FormResponseUpdateWithoutAsnwersInput, FormResponseUncheckedUpdateWithoutAsnwersInput>
-    create: XOR<FormResponseCreateWithoutAsnwersInput, FormResponseUncheckedCreateWithoutAsnwersInput>
+  export type FormResponseUpsertWithoutAnswersInput = {
+    update: XOR<FormResponseUpdateWithoutAnswersInput, FormResponseUncheckedUpdateWithoutAnswersInput>
+    create: XOR<FormResponseCreateWithoutAnswersInput, FormResponseUncheckedCreateWithoutAnswersInput>
     where?: FormResponseWhereInput
   }
 
-  export type FormResponseUpdateToOneWithWhereWithoutAsnwersInput = {
+  export type FormResponseUpdateToOneWithWhereWithoutAnswersInput = {
     where?: FormResponseWhereInput
-    data: XOR<FormResponseUpdateWithoutAsnwersInput, FormResponseUncheckedUpdateWithoutAsnwersInput>
+    data: XOR<FormResponseUpdateWithoutAnswersInput, FormResponseUncheckedUpdateWithoutAnswersInput>
   }
 
-  export type FormResponseUpdateWithoutAsnwersInput = {
+  export type FormResponseUpdateWithoutAnswersInput = {
     id?: StringFieldUpdateOperationsInput | string
     respondentEmail?: NullableStringFieldUpdateOperationsInput | string | null
     respondentName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9185,7 +9185,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutFormResponsesNestedInput
   }
 
-  export type FormResponseUncheckedUpdateWithoutAsnwersInput = {
+  export type FormResponseUncheckedUpdateWithoutAnswersInput = {
     id?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -9247,7 +9247,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     form?: FormUpdateOneRequiredWithoutResponsesNestedInput
-    asnwers?: AnswerUpdateManyWithoutFormResponseNestedInput
+    answers?: AnswerUpdateManyWithoutFormResponseNestedInput
   }
 
   export type FormResponseUncheckedUpdateWithoutUserInput = {
@@ -9257,7 +9257,7 @@ export namespace Prisma {
     respondentName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    asnwers?: AnswerUncheckedUpdateManyWithoutFormResponseNestedInput
+    answers?: AnswerUncheckedUpdateManyWithoutFormResponseNestedInput
   }
 
   export type FormResponseUncheckedUpdateManyWithoutUserInput = {
@@ -9318,7 +9318,7 @@ export namespace Prisma {
     respondentName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    asnwers?: AnswerUpdateManyWithoutFormResponseNestedInput
+    answers?: AnswerUpdateManyWithoutFormResponseNestedInput
     user?: UserUpdateOneRequiredWithoutFormResponsesNestedInput
   }
 
@@ -9329,7 +9329,7 @@ export namespace Prisma {
     respondentName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    asnwers?: AnswerUncheckedUpdateManyWithoutFormResponseNestedInput
+    answers?: AnswerUncheckedUpdateManyWithoutFormResponseNestedInput
   }
 
   export type FormResponseUncheckedUpdateManyWithoutFormInput = {
@@ -9354,7 +9354,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    formResponse?: FormResponseUpdateOneWithoutAsnwersNestedInput
+    formResponse?: FormResponseUpdateOneWithoutAnswersNestedInput
   }
 
   export type AnswerUncheckedUpdateWithoutQuestionInput = {
