@@ -1,7 +1,13 @@
-import React from 'react'
+import { Question } from '@/lib/generated/prisma';
 
-export default function FormPreview() {
-  return (
-    <div>form pre</div>
-  )
+type FormPreviewProps = {
+  form: {
+    id: string;
+    title: string;
+    description: string | null;
+    questions: Question[];
+  };
+};
+export default function FormPreview({ form }: FormPreviewProps) {
+  return <div>form pre</div>;
 }
