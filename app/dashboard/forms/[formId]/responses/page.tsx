@@ -34,20 +34,34 @@ export default async function FormResponsesPage({
       },
     },
   });
-    if (!form) {
-        redirect(`/dashboard/forms`);
-    }
+  if (!form) {
+    redirect(`/dashboard/forms`);
+  }
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Form Responses</h1>
-          <p className="text-gray-500 mt-1">{form.title} - {form.responses.length} responses</p>
+          <p className="text-gray-500 mt-1">
+            {form.title} - {form.responses.length} responses
+          </p>
         </div>
-        <Button asChild variant={"outline"}>
-            <Link href={`/dashboard/forms/${form.id}`}>Back to Form</Link>
+        <Button asChild variant={'outline'}>
+          <Link href={`/dashboard/forms/${form.id}`}>Back to Form</Link>
         </Button>
       </div>
+      {form.responses.length === 0 ? (
+        <div className='text-center py-10 border rounded-lg'>
+          <p className='text-gray-500'>No responses yet.</p>
+          <p className='text-gray-500 mt-1'>Share your form to collect responses.</p>
+        </div>
+      ) : (
+        <div className='space-y-6'>
+          {form.responses.map((response) => (
+            <h1 key={response.id}>{response.id}</h1>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
