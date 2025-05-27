@@ -3,6 +3,7 @@ import { Question } from '@/lib/generated/prisma';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { useState } from 'react';
+import { Textarea } from '../ui/textarea';
 
 type FormPreviewProps = {
   form: {
@@ -15,6 +16,9 @@ type FormPreviewProps = {
 export default function FormPreview({ form }: FormPreviewProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [answers, setAnswers] = useState(
+    form.questions.map((q) => ({ questionId: q.id, text: "" }))
+  );
   return (
     <div className="max-w-xl mx-auto">
       <div className="mb-8">
@@ -23,7 +27,7 @@ export default function FormPreview({ form }: FormPreviewProps) {
           <p className="mt-2 text-gray-600">{form.description}</p>
         )}
       </div>
-      <form>
+      <form className='space-y-6'>
         <div className="space-y-4">
           <Label>Your Name (Optional)</Label>
           <Input
@@ -43,6 +47,28 @@ export default function FormPreview({ form }: FormPreviewProps) {
             className="mt-1"
           />
         </div>
+        <div className="space-y-6">
+          {form.questions
+            .sort((a, b) => a.order - b.order)
+            .map((question, index) => (
+              <div key={question.id} className="space-y-2">
+                <Label className="font-medium">
+                  {index + 1}. {question.text}
+                </Label>
+                <Textarea
+                  placeholder="Your answer"
+                  value={
+                    answers.find((a) => a.questionId === question.id)?.text ||
+                    ""
+                  }
+                  onChange={(e) =>
+                    handleAnswerChange(question.id, e.target.value)
+                  }
+                />
+              </div>
+            ))}
+        </div>
+
       </form>
     </div>
   );
