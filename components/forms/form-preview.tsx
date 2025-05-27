@@ -4,6 +4,9 @@ import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { useState } from 'react';
 import { Textarea } from '../ui/textarea';
+import { Button } from '../ui/button';
+import { toast } from 'sonner';
+import { useRouter } from "next/navigation";
 
 type FormPreviewProps = {
   form: {
@@ -14,11 +17,63 @@ type FormPreviewProps = {
   };
 };
 export default function FormPreview({ form }: FormPreviewProps) {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [answers, setAnswers] = useState(
     form.questions.map((q) => ({ questionId: q.id, text: "" }))
   );
+
+  const handleAnswerChange = (questionId: string, text: string) => {
+    setAnswers((prev) => {
+      return prev.map((a) =>
+        a.questionId === questionId ? { ...a, text } : a
+      );
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const emptyAnswers = answers.some((a) => !a.text.trim());
+    if (emptyAnswers) {
+      toast.error("All questions are required!");
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/responses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formId: form.id,
+          answers,
+          respondentName: name,
+          respondentEmail: email,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+
+      toast.success("Response submitted!", {
+        description: "Thank you for completing this form.",
+      });
+
+      setAnswers(form.questions.map((q) => ({ questionId: q.id, text: "" })));
+      setName("");
+      setEmail("");
+
+      router.push("/");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Error", {
+        description: "Something went wrong while submitting your response.",
+      });
+    }
+  };
   return (
     <div className="max-w-xl mx-auto">
       <div className="mb-8">
@@ -27,7 +82,7 @@ export default function FormPreview({ form }: FormPreviewProps) {
           <p className="mt-2 text-gray-600">{form.description}</p>
         )}
       </div>
-      <form className='space-y-6'>
+      <form className='space-y-6' onSubmit={handleSubmit}>
         <div className="space-y-4">
           <Label>Your Name (Optional)</Label>
           <Input
@@ -67,6 +122,9 @@ export default function FormPreview({ form }: FormPreviewProps) {
                 />
               </div>
             ))}
+        </div>
+        <div className="flex justify-end">
+          <Button type="submit">Submit Response</Button>
         </div>
 
       </form>

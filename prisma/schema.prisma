@@ -21,7 +21,6 @@ model User {
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   forms         Form[]
-  formResponses FormResponse[]
 }
 
 model Form {
@@ -52,8 +51,6 @@ model FormResponse {
   formId          String
   form            Form     @relation(fields: [formId], references: [id])
   answers         Answer[]
-  userId          String
-  user            User     @relation(fields: [userId], references: [id])
   respondentEmail String?
   respondentName  String?
   createdAt       DateTime @default(now())
