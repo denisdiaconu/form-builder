@@ -33,7 +33,16 @@ export default function FormPreview({ form }: FormPreviewProps) {
             className="mt-1"
           />
         </div>
-        
+        <div className="space-y-4">
+          <Label>Your Email (Optional)</Label>
+          <Input
+            placeholder="Enter your email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="mt-1"
+          />
+        </div>
       </form>
     </div>
   );
