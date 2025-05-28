@@ -61,7 +61,7 @@ model Answer {
   id           String        @id @default(cuid())
   text         String
   questionId   String
-  question     Question?     @relation(fields: [questionId], references: [id])
+  question     Question      @relation(fields: [questionId], references: [id])
   responseId   String
   formResponse FormResponse? @relation(fields: [responseId], references: [id])
   createdAt    DateTime      @default(now())

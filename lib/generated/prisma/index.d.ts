@@ -5964,7 +5964,7 @@ export namespace Prisma {
     responseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    question?: boolean | Answer$questionArgs<ExtArgs>
+    question?: boolean | QuestionDefaultArgs<ExtArgs>
     formResponse?: boolean | Answer$formResponseArgs<ExtArgs>
   }, ExtArgs["result"]["answer"]>
 
@@ -5975,7 +5975,7 @@ export namespace Prisma {
     responseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    question?: boolean | Answer$questionArgs<ExtArgs>
+    question?: boolean | QuestionDefaultArgs<ExtArgs>
     formResponse?: boolean | Answer$formResponseArgs<ExtArgs>
   }, ExtArgs["result"]["answer"]>
 
@@ -5986,7 +5986,7 @@ export namespace Prisma {
     responseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    question?: boolean | Answer$questionArgs<ExtArgs>
+    question?: boolean | QuestionDefaultArgs<ExtArgs>
     formResponse?: boolean | Answer$formResponseArgs<ExtArgs>
   }, ExtArgs["result"]["answer"]>
 
@@ -6001,22 +6001,22 @@ export namespace Prisma {
 
   export type AnswerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "questionId" | "responseId" | "createdAt" | "updatedAt", ExtArgs["result"]["answer"]>
   export type AnswerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    question?: boolean | Answer$questionArgs<ExtArgs>
+    question?: boolean | QuestionDefaultArgs<ExtArgs>
     formResponse?: boolean | Answer$formResponseArgs<ExtArgs>
   }
   export type AnswerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    question?: boolean | Answer$questionArgs<ExtArgs>
+    question?: boolean | QuestionDefaultArgs<ExtArgs>
     formResponse?: boolean | Answer$formResponseArgs<ExtArgs>
   }
   export type AnswerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    question?: boolean | Answer$questionArgs<ExtArgs>
+    question?: boolean | QuestionDefaultArgs<ExtArgs>
     formResponse?: boolean | Answer$formResponseArgs<ExtArgs>
   }
 
   export type $AnswerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Answer"
     objects: {
-      question: Prisma.$QuestionPayload<ExtArgs> | null
+      question: Prisma.$QuestionPayload<ExtArgs>
       formResponse: Prisma.$FormResponsePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6420,7 +6420,7 @@ export namespace Prisma {
    */
   export interface Prisma__AnswerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    question<T extends Answer$questionArgs<ExtArgs> = {}>(args?: Subset<T, Answer$questionArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    question<T extends QuestionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuestionDefaultArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     formResponse<T extends Answer$formResponseArgs<ExtArgs> = {}>(args?: Subset<T, Answer$formResponseArgs<ExtArgs>>): Prisma__FormResponseClient<$Result.GetResult<Prisma.$FormResponsePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6851,25 +6851,6 @@ export namespace Prisma {
   }
 
   /**
-   * Answer.question
-   */
-  export type Answer$questionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Question
-     */
-    select?: QuestionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Question
-     */
-    omit?: QuestionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: QuestionInclude<ExtArgs> | null
-    where?: QuestionWhereInput
-  }
-
-  /**
    * Answer.formResponse
    */
   export type Answer$formResponseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7288,7 +7269,7 @@ export namespace Prisma {
     responseId?: StringFilter<"Answer"> | string
     createdAt?: DateTimeFilter<"Answer"> | Date | string
     updatedAt?: DateTimeFilter<"Answer"> | Date | string
-    question?: XOR<QuestionNullableScalarRelationFilter, QuestionWhereInput> | null
+    question?: XOR<QuestionScalarRelationFilter, QuestionWhereInput>
     formResponse?: XOR<FormResponseNullableScalarRelationFilter, FormResponseWhereInput> | null
   }
 
@@ -7313,7 +7294,7 @@ export namespace Prisma {
     responseId?: StringFilter<"Answer"> | string
     createdAt?: DateTimeFilter<"Answer"> | Date | string
     updatedAt?: DateTimeFilter<"Answer"> | Date | string
-    question?: XOR<QuestionNullableScalarRelationFilter, QuestionWhereInput> | null
+    question?: XOR<QuestionScalarRelationFilter, QuestionWhereInput>
     formResponse?: XOR<FormResponseNullableScalarRelationFilter, FormResponseWhereInput> | null
   }, "id">
 
@@ -7608,7 +7589,7 @@ export namespace Prisma {
     text: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    question?: QuestionCreateNestedOneWithoutAnswersInput
+    question: QuestionCreateNestedOneWithoutAnswersInput
     formResponse?: FormResponseCreateNestedOneWithoutAnswersInput
   }
 
@@ -7626,7 +7607,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    question?: QuestionUpdateOneWithoutAnswersNestedInput
+    question?: QuestionUpdateOneRequiredWithoutAnswersNestedInput
     formResponse?: FormResponseUpdateOneWithoutAnswersNestedInput
   }
 
@@ -7946,9 +7927,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type QuestionNullableScalarRelationFilter = {
-    is?: QuestionWhereInput | null
-    isNot?: QuestionWhereInput | null
+  export type QuestionScalarRelationFilter = {
+    is?: QuestionWhereInput
+    isNot?: QuestionWhereInput
   }
 
   export type FormResponseNullableScalarRelationFilter = {
@@ -8267,12 +8248,10 @@ export namespace Prisma {
     connect?: FormResponseWhereUniqueInput
   }
 
-  export type QuestionUpdateOneWithoutAnswersNestedInput = {
+  export type QuestionUpdateOneRequiredWithoutAnswersNestedInput = {
     create?: XOR<QuestionCreateWithoutAnswersInput, QuestionUncheckedCreateWithoutAnswersInput>
     connectOrCreate?: QuestionCreateOrConnectWithoutAnswersInput
     upsert?: QuestionUpsertWithoutAnswersInput
-    disconnect?: QuestionWhereInput | boolean
-    delete?: QuestionWhereInput | boolean
     connect?: QuestionWhereUniqueInput
     update?: XOR<XOR<QuestionUpdateToOneWithWhereWithoutAnswersInput, QuestionUpdateWithoutAnswersInput>, QuestionUncheckedUpdateWithoutAnswersInput>
   }
@@ -8777,7 +8756,7 @@ export namespace Prisma {
     text: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    question?: QuestionCreateNestedOneWithoutAnswersInput
+    question: QuestionCreateNestedOneWithoutAnswersInput
   }
 
   export type AnswerUncheckedCreateWithoutFormResponseInput = {
@@ -9097,7 +9076,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    question?: QuestionUpdateOneWithoutAnswersNestedInput
+    question?: QuestionUpdateOneRequiredWithoutAnswersNestedInput
   }
 
   export type AnswerUncheckedUpdateWithoutFormResponseInput = {

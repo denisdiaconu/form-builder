@@ -1,3 +1,4 @@
+import FormResponse from '@/components/forms/form-response';
 import { Button } from '@/components/ui/button';
 import prisma from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
@@ -58,7 +59,7 @@ export default async function FormResponsesPage({
       ) : (
         <div className='space-y-6'>
           {form.responses.map((response) => (
-            <FormResponse key={response.id}/>
+            <FormResponse key={response.id} response={response}/>
           ))}
         </div>
       )}
