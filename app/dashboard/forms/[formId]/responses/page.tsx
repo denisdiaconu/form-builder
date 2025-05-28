@@ -58,7 +58,7 @@ export default async function FormResponsesPage({
       ) : (
         <div className='space-y-6'>
           {form.responses.map((response) => (
-            <h1 key={response.id}>{response.id}</h1>
+            <FormResponse key={response.id}/>
           ))}
         </div>
       )}
