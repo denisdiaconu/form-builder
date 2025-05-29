@@ -1,9 +1,20 @@
 import { Button } from '@/components/ui/button';
 import { syncUserWithDatabase } from '@/lib/clerk-sync';
+import prisma from '@/lib/db';
+import { auth } from '@clerk/nextjs/server';
 import Link from 'next/link';
 
 export default async function Dashboard() {
+  const { userId, redirectToSignIn } = await auth();
+
+  if (!userId) return redirectToSignIn();
   await syncUserWithDatabase();
+
+  const formsCount = await prisma.form.count({
+    where: {
+      userId,
+    },
+  });
   return (
     <div className="space-y-6">
       <div>
@@ -13,7 +24,7 @@ export default async function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white rounded-lg shadow p-6 border">
           <h2 className="text-xl font-medium">Your Forms</h2>
-          <p className="text-3xl font-bold mt-2">12</p>
+          <p className="text-3xl font-bold mt-2">{formsCount}</p>
           <Button className="mt-4" asChild>
             <Link href="/dashboard/forms">View All Forms</Link>
           </Button>
@@ -45,9 +56,7 @@ export default async function Dashboard() {
                 <Link href={`/dashboard/forms/123`}>View</Link>
               </Button>
               <Button>
-                <Link href={`/dashboard/forms/123/responses`}>
-                  Responses
-                </Link>
+                <Link href={`/dashboard/forms/123/responses`}>Responses</Link>
               </Button>
             </div>
           </div>
