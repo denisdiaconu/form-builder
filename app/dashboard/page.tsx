@@ -24,6 +24,17 @@ export default async function Dashboard() {
     },
   });
 
+  const recentForms = await prisma.form.findMany({
+    where: { userId },
+    orderBy: { createdAt: 'desc' },
+    take: 5,
+    include: {
+      _count: {
+        select: { responses: true },
+      },
+    },
+  });
+
   return (
     <div className="space-y-6">
       <div>
@@ -52,24 +63,37 @@ export default async function Dashboard() {
       </div>
       <div className="bg-white rounded-lg shadow p-6 border">
         <h2 className="text-xl font-medium mb-4">Recent Forms</h2>
-        <div className="space-y-4">
-          <div className="flex items-center justify-between border-b pb-4">
-            <div>
-              <h3 className="font-medium">This is the title</h3>
-              <p className="text-sm text-gray-500">
-                responses . Created on 21 April 2025
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <Button>
-                <Link href={`/dashboard/forms/123`}>View</Link>
-              </Button>
-              <Button>
-                <Link href={`/dashboard/forms/123/responses`}>Responses</Link>
-              </Button>
-            </div>
+        {recentForms.length === 0 ? (
+          <p>{`You haven't created any forms yet.`}</p>
+        ) : (
+          <div className="space-y-4">
+            {recentForms.map((form) => (
+              <div
+                className="flex items-center justify-between border-b pb-4"
+                key={form.id}
+              >
+                <div>
+                  <h3 className="font-medium">{form.title}</h3>
+                  <p className="text-sm text-gray-500">
+                    {form._count.responses} responses · Created on{" "}
+                    {new Date(form.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <Button>
+                    <Link href={`/dashboard/forms/${form.id}`}>View</Link>
+                  </Button>
+                  <Button>
+                    <Link href={`/dashboard/forms/${form.id}/responses`}>
+                      Responses
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
+        )}
+        <div className="space-y-4"></div>
       </div>
     </div>
   );
