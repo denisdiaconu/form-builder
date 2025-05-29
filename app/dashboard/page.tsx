@@ -75,7 +75,7 @@ export default async function Dashboard() {
                 <div>
                   <h3 className="font-medium">{form.title}</h3>
                   <p className="text-sm text-gray-500">
-                    {form._count.responses} responses · Created on{" "}
+                    {form._count.responses} responses · Created on{' '}
                     {new Date(form.createdAt).toLocaleDateString()}
                   </p>
                 </div>
