@@ -15,6 +15,15 @@ export default async function Dashboard() {
       userId,
     },
   });
+
+  const responseCount = await prisma.formResponse.count({
+    where: {
+      form: {
+        userId,
+      },
+    },
+  });
+
   return (
     <div className="space-y-6">
       <div>
@@ -31,7 +40,7 @@ export default async function Dashboard() {
         </div>
         <div className="bg-white rounded-lg shadow p-6 border">
           <h2 className="text-xl font-medium">Total Responses</h2>
-          <p className="text-3xl font-bold mt-2">100</p>
+          <p className="text-3xl font-bold mt-2">{responseCount}</p>
         </div>
         <div className="bg-white rounded-lg shadow p-6 border">
           <h2 className="text-xl font-medium">Create New</h2>
