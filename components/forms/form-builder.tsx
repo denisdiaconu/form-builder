@@ -8,13 +8,31 @@ import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 
-export default function FormBuilder() {
+type Question = {
+  id: string;
+  text: string;
+};
+
+type FormBuilderProps = {
+  initialData: {
+    id?: string;
+    title: string;
+    description: string;
+    questions: Question[];
+  };
+  isEditing?: boolean;
+};
+
+export default function FormBuilder({
+  initialData,
+  isEditing = false,
+}: FormBuilderProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
-    title: '',
-    description: '',
-    questions: [
+    title: initialData?.title || '',
+    description: initialData?.description || '',
+    questions: initialData?.questions || [
       {
         id: '1',
         text: '',
@@ -62,8 +80,12 @@ export default function FormBuilder() {
 
     try {
       setIsSubmitting(true);
-      const response = await fetch('/api/forms', {
-        method: 'POST',
+
+      const url = isEditing ? `/api/forms/${initialData?.id}` : '/api/forms';
+      const method = isEditing ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -74,7 +96,7 @@ export default function FormBuilder() {
         throw new Error(error);
       }
       const data = await response.json();
-      toast.success('Form created successfully!', {
+      toast.success(isEditing ? 'Form updated!' : 'Form created!', {
         description: 'Your form has been saved successfully.',
       });
       router.push(`/dashboard/forms/${data.id}`);
@@ -153,7 +175,11 @@ export default function FormBuilder() {
           Cancel
         </Button>
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Saving...' : 'Create Form'}
+          {isSubmitting
+            ? 'Saving...'
+            : isEditing
+            ? 'Update Form'
+            : 'Create Form'}
         </Button>
       </div>
     </form>
