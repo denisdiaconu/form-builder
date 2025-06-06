@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Form Builder
 
-## Getting Started
+A Form Builder page built with Next.js and TypeScript, providing a modern and responsive platform for an engaging user experience across devices. Users can sign up, create custom forms like "Employee Feedback Form", and share links to collect responses.
 
-First, run the development server:
+## Built With
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- JavaScript
+- Next.js
+- Typescript
+- Tailwind
+- Shadcn UI
+- Clerk authentication
+- Prisma ORM
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![Page](https://github.com/denisdiaconu/form-builder/blob/master/public/images/Form-Builder-Home.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Authors
 
-To learn more about Next.js, take a look at the following resources:
+👤 **Denis Andrei Diaconu**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- GitHub: [@DenisDiaconu](https://github.com/denisdiaconu)
+- LinkedIn: [Denis Diaconu](https://www.linkedin.com/in/denis-diaconu-1394091b7/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Contributing
 
-## Deploy on Vercel
+Contributions, issues, and feature requests are welcome!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Show your support
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Give a ⭐️ if you like this project!
